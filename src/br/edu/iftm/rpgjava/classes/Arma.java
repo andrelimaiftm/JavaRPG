@@ -3,7 +3,7 @@ package br.edu.iftm.rpgjava.classes;
 public class Arma {
 
     //atributos da classe
-    //private String nome;
+    private String nome;
     private int dano;
    private int durabilidade;
 
@@ -13,7 +13,7 @@ public class Arma {
     }
 
     public Arma(String nome, int dano, int durabilidade) {
-        //this.nome = nome;
+        this.nome = nome;
         this.dano = dano;
         this.durabilidade = durabilidade;
     }
@@ -38,13 +38,13 @@ public class Arma {
 
 
     //metodos getter e setter
-   /* public String getNome() {
+    public String getNome() {
         return nome;
-    }*/
+    }
 
-    /*public void setNome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
-    }*/
+    }
 
     public int getDano() {
         return dano;
