@@ -14,15 +14,15 @@ public class Guerreiro {
     private int estamina;
     private int sorte;
     private int mana;
-
     private Armadura armadura;
     private Arma arma;
-
     //metodo construtor
-    public Guerreiro(){}
+    public Guerreiro() {
+    }
 
-    public Guerreiro(String nome, int forca, int destreza, int agilidade, int inteligencia, int carisma,
-                     int resistencia, int vida, int estamina, int sorte, int mana) {
+    public Guerreiro(String nome, int forca, int destreza, int agilidade, int inteligencia,
+                     int carisma, int resistencia, int vida, int estamina, int sorte,
+                     int mana) {
         this.nome = nome;
         this.forca = forca;
         this.destreza = destreza;
@@ -37,44 +37,52 @@ public class Guerreiro {
     }
 
     //metodos da classe
-    public int atacar(int valorDado){
+    public int atacar(int valorDado, int defesaInimigo) {
         int valorAtaque = 0;
-        if(valorDado < 2){
+        if (valorDado < 2) { //falha critica
             System.out.println("O Ataque falhou!!!");
-        }else{
-            valorAtaque = this.forca+valorDado;
-            valorAtaque = this.arma.calculaAtaque(valorAtaque);
+        } else {
+            if(arma != null){
+                valorAtaque = this.arma.calculaAtaque(valorAtaque);
+                arma.diminuiDurabilidade(defesaInimigo);
+                if(arma.temDurabilidade() == false){
+                    arma = new Arma();
+                }
+            }else{
+                valorAtaque = this.forca + valorDado;
+            }
+
         }
         return valorAtaque;
     }
 
-    public void defender(int valorDoAtaque){
-        int defesaTotal  = 0;
-        if(armadura != null){
+    public void defender(int valorDoAtaque) {
+        int defesaTotal = 0;
+        if (armadura != null) {
             defesaTotal = armadura.calculaDefesa(this.resistencia);
-        }else{
+        } else {
             defesaTotal = this.resistencia;
         }
-        if(valorDoAtaque <= defesaTotal){
+        if (valorDoAtaque <= defesaTotal) {
             System.out.println("O Ataque foi defendido!!!");
-        }else{
+        } else {
             int danoCausado = valorDoAtaque - defesaTotal;
             System.out.println("O dano causado foi de: " + danoCausado);
             //this.vida = this.vida - danoCausado
             this.vida -= danoCausado;
             armadura.diminuiDurabilidade(danoCausado);
-            if(armadura.temDurabilidade() == false){
+            if (armadura.temDurabilidade() == false) {
                 this.armadura = new Armadura();
             }
         }
     }
 
     //métodos especiais getter e setter
-    public String getNome(){
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome){
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -174,3 +182,5 @@ public class Guerreiro {
         this.arma = arma;
     }
 }
+
+

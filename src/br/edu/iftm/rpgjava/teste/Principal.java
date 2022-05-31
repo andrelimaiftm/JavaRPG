@@ -1,6 +1,7 @@
 package br.edu.iftm.rpgjava.teste;
 
 import java.util.Random;
+import java.util.Scanner;
 
 import br.edu.iftm.rpgjava.classes.Arqueiro;
 import br.edu.iftm.rpgjava.classes.Guerreiro;
@@ -9,8 +10,15 @@ import br.edu.iftm.rpgjava.classes.Mago;
 public class Principal {
 
     public static void main(String[] args) {
+
         Guerreiro g = new Guerreiro("Vladimir", 80, 50,30, -3, 0,
                 80, 100, 90, 10, 63); //metodo construtor
+
+
+        System.out.println(g.getNome());
+
+
+
         //Objeto br.edu.iftm.rpgjava.classes.Guerreiro
         /*g.setNome("Vladimir");
         g.setForca(80);
